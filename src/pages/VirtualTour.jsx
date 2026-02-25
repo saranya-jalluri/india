@@ -1,4 +1,7 @@
+import { useNavigate } from "react-router-dom"
+
 function VirtualTour() {
+  const navigate = useNavigate()
 
   const tours = [
     {
@@ -14,6 +17,15 @@ function VirtualTour() {
 
   return (
     <div style={containerStyle}>
+      
+      {/* Navbar */}
+      <div style={navStyle}>
+        <h2>🎥 Virtual Heritage Tours</h2>
+        <button onClick={() => navigate(-1)} style={backBtn}>
+          ← Back
+        </button>
+      </div>
+
       <div style={{ padding: "60px" }}>
 
         <h2 style={titleStyle}>🎥 Virtual Heritage Tours</h2>
@@ -71,6 +83,25 @@ const cardStyle = {
   border: "1px solid rgba(212,175,55,0.3)",
   backdropFilter: "blur(8px)",
   boxShadow: "0 8px 25px rgba(0,0,0,0.4)",
+}
+
+const navStyle = {
+  backgroundColor: "#111",
+  padding: "20px 60px",
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+  borderBottom: "1px solid #d4af37",
+}
+
+const backBtn = {
+  padding: "8px 18px",
+  backgroundColor: "transparent",
+  color: "#d4af37",
+  border: "1px solid #d4af37",
+  borderRadius: "20px",
+  cursor: "pointer",
+  fontWeight: "bold",
 }
 
 export default VirtualTour

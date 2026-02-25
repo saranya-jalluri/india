@@ -1,19 +1,39 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 
 function Discussion() {
+  const navigate = useNavigate()
   const [name, setName] = useState("")
   const [comment, setComment] = useState("")
   const [comments, setComments] = useState([])
+
+  // Load comments from localStorage on mount
+  useEffect(() => {
+    const stored = JSON.parse(localStorage.getItem("heritageComments"))
+    if (stored && stored.length > 0) {
+      setComments(stored)
+    }
+  }, [])
+
+  // Save comments to localStorage whenever they change
+  useEffect(() => {
+    if (comments.length > 0) {
+      localStorage.setItem("heritageComments", JSON.stringify(comments))
+    }
+  }, [comments])
 
   const addComment = () => {
     if (!name || !comment) return
 
     const newComment = {
       name,
-      comment
+      comment,
+      date: new Date().toLocaleDateString()
     }
 
-    setComments([...comments, newComment])
+    const updatedComments = [...comments, newComment]
+    setComments(updatedComments)
+    localStorage.setItem("heritageComments", JSON.stringify(updatedComments))
     setName("")
     setComment("")
   }
@@ -21,10 +41,20 @@ function Discussion() {
   const deleteComment = (index) => {
     const updated = comments.filter((_, i) => i !== index)
     setComments(updated)
+    localStorage.setItem("heritageComments", JSON.stringify(updated))
   }
 
   return (
     <div style={containerStyle}>
+      
+      {/* Navbar */}
+      <div style={navStyle}>
+        <h2>💬 Heritage Discussion Forum</h2>
+        <button onClick={() => navigate(-1)} style={backBtn}>
+          ← Back
+        </button>
+      </div>
+
       <div style={{ padding: "60px" }}>
 
         <h2 style={titleStyle}>💬 Heritage Discussion Forum</h2>

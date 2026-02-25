@@ -13,8 +13,14 @@ function Login() {
   const handleLogin = () => {
     setError("")
 
+    // Valid users configuration
+    const adminUsers = [
+      { user: "admin", pass: "1234" },
+      { user: "gudia", pass: "gudia123" }
+    ]
+
     const users = {
-      admin: { user: "admin", pass: "1234" },
+      admin: adminUsers,
       enthusiast: { user: "user", pass: "1234" },
       creator: { user: "creator", pass: "1234" },
       guide: { user: "guide", pass: "1234" }
@@ -25,16 +31,26 @@ function Login() {
       return
     }
 
-    if (
-      users[role] &&
-      username === users[role].user &&
-      password === users[role].pass
-    ) {
-      localStorage.setItem("role", role)
-      navigate(`/${role}`)
-    } else {
-      setError("Invalid username or password.")
+    // Check for admin users (array)
+    if (role === "admin" && Array.isArray(users[role])) {
+      const validAdmin = users[role].find(u => u.user === username && u.pass === password)
+      if (validAdmin) {
+        localStorage.setItem("role", role)
+        localStorage.setItem("username", username)
+        navigate(`/${role}`)
+        return
+      }
+    } else if (users[role]) {
+      // Check for regular users (object)
+      if (username === users[role].user && password === users[role].pass) {
+        localStorage.setItem("role", role)
+        localStorage.setItem("username", username)
+        navigate(`/${role}`)
+        return
+      }
     }
+
+    setError("Invalid username or password.")
   }
 
   return (
@@ -92,6 +108,15 @@ function Login() {
         <button style={buttonStyle} onClick={handleLogin}>
           Access Dashboard
         </button>
+
+        {/* Admin Credentials Info */}
+        {role === "admin" && (
+          <div style={infoBox}>
+            <p style={{ margin: "5px 0", fontSize: "12px" }}>Admin Options:</p>
+            <p style={{ margin: "2px 0", fontSize: "11px", opacity: 0.8 }}>• admin / 1234</p>
+            <p style={{ margin: "2px 0", fontSize: "11px", opacity: 0.8 }}>• gudia / gudia123</p>
+          </div>
+        )}
 
       </div>
     </div>
@@ -179,6 +204,15 @@ const toggleStyle = {
   cursor: "pointer",
   fontSize: "12px",
   color: "#d4af37"
+}
+
+const infoBox = {
+  marginTop: "20px",
+  padding: "12px",
+  background: "rgba(212,175,55,0.1)",
+  borderRadius: "8px",
+  border: "1px solid rgba(212,175,55,0.3)",
+  textAlign: "center"
 }
 
 export default Login
