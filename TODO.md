@@ -10,3 +10,4 @@
 - [x] 7. ManageUsers.jsx - Added "gudia" user to the list
 - [x] 8. CreatorDashboard.jsx - Added Back button, stats overview, edit functionality
 - [x] 9. GuideDashboard.jsx - Added Back button, stats overview, filter functionality
+- [x] 10. Discussion.jsx - Added 5 demo discussions with likes feature
