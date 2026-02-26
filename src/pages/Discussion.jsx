@@ -7,6 +7,14 @@ function Discussion() {
   const [comment, setComment] = useState("")
   const [comments, setComments] = useState([])
 
+  // Check user role and redirect admin to admin discussion page
+  useEffect(() => {
+    const userRole = localStorage.getItem("role")
+    if (userRole === "admin") {
+      navigate("/admin-discussion")
+    }
+  }, [navigate])
+
   // Load comments from localStorage on mount
   useEffect(() => {
     let stored = JSON.parse(localStorage.getItem("heritageComments"))

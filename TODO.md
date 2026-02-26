@@ -1,13 +1,9 @@
-# India Heritage Website - Implementation Plan
+# TODO: Separate Discussion Box for Admin
 
-## Tasks Completed:
-- [x] 1. monuments.js - Add image URLs to all monuments
-- [x] 2. Login.jsx - Add "gudia" as admin user
-- [x] 3. CreatorDashboard.jsx - Connect to pending approval system
-- [x] 4. ContentApproval.jsx - Properly approve and publish to Explore
-- [x] 5. AdminDashboard.jsx - Add enhanced tour management and stats
-- [x] 6. Explore.jsx - Load from localStorage (published monuments) + static monuments
-- [x] 7. ManageUsers.jsx - Added "gudia" user to the list
-- [x] 8. CreatorDashboard.jsx - Added Back button, stats overview, edit functionality
-- [x] 9. GuideDashboard.jsx - Added Back button, stats overview, filter functionality
-- [x] 10. Discussion.jsx - Added 5 demo discussions with likes feature
+## Task: Create separate discussion views for admin and users
+
+### Steps:
+- [ ] 1. Create AdminDiscussion.jsx - read-only discussion page for admin
+- [ ] 2. Update App.jsx - add route for /admin-discussion
+- [ ] 3. Update AdminDashboard.jsx - change discussion link to /admin-discussion
+- [ ] 4. Update Discussion.jsx - redirect admin users to admin discussion page

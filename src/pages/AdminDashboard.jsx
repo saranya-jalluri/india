@@ -98,13 +98,13 @@ function AdminDashboard() {
             </button>
           </div>
 
-          <div style={cardStyle} onMouseEnter={(e) => e.currentTarget.style.transform = "translateY(-5px)"} onMouseLeave={(e) => e.currentTarget.style.transform = "translateY(0)"}>
+<div style={cardStyle} onMouseEnter={(e) => e.currentTarget.style.transform = "translateY(-5px)"} onMouseLeave={(e) => e.currentTarget.style.transform = "translateY(0)"}>
             <div style={cardIcon}>💬</div>
             <h4>Monitor Discussions</h4>
             <p>Approve or remove inappropriate comments.</p>
             <button
               style={btnStyle}
-              onClick={() => navigate("/discussion")}
+              onClick={() => navigate("/admin-discussion")}
             >
               View Discussions
             </button>

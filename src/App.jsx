@@ -9,6 +9,7 @@ import GuideDashboard from "./pages/GuideDashboard"
 import Explore from "./pages/Explore"
 import VirtualTour from "./pages/VirtualTour"
 import Discussion from "./pages/Discussion"
+import AdminDiscussion from "./pages/AdminDiscussion"
 import ContentApproval from "./pages/ContentApproval"
 import ManageUsers from "./pages/ManageUsers"
 
@@ -25,6 +26,7 @@ function App() {
         <Route path="/explore" element={<Explore />} />
         <Route path="/tour" element={<VirtualTour />} />
         <Route path="/discussion" element={<Discussion />} />
+        <Route path="/admin-discussion" element={<AdminDiscussion />} />
         <Route path="/approval" element={<ContentApproval />} />
         <Route path="/manage-users" element={<ManageUsers />} />
       </Routes>
